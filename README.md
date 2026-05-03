@@ -5,6 +5,7 @@ Tool-agnostic engineering rules for AI coding assistants. One source of truth, w
 ## Files
 - `AI-RULES.md` — universal rules. Always apply.
 - `AI-RULES.web-development.md` — WordPress/web profile. Pair with the universal rules.
+- `AI-RULES.web-performance.md` — Core Web Vitals, asset delivery, caching. Load when performance work is in scope.
 - `AI-REFERENCES.web-development.md` — external URLs. On-demand only — most AI tools don't fetch URLs at runtime, so loading these by default just burns tokens.
 
 ## How to use with each AI tool
@@ -20,7 +21,7 @@ No mainstream AI tool auto-loads `AI-RULES.md`. Wire it in via the filename the 
 | Windsurf | `.windsurfrules` | `ln -s AI-RULES.md .windsurfrules` |
 | GitHub Copilot | `.github/copilot-instructions.md` | Copy into `.github/` |
 
-For WordPress projects, also wire in `AI-RULES.web-development.md` — either concatenate it into the tool's main rules file, or place it alongside if the tool supports multiple rule files (e.g. Cursor's `.cursor/rules/`, Cline's per-folder `.clinerules`).
+For WordPress projects, also wire in `AI-RULES.web-development.md`. For performance-focused work, layer in `AI-RULES.web-performance.md` as well. Either concatenate the relevant profiles into the tool's main rules file, or place them alongside if the tool supports multiple rule files (e.g. Cursor's `.cursor/rules/`, Cline's per-folder `.clinerules`).
 
 ## Design principles
 - **Imperative voice, plain markdown** — no XML tags, no tool-specific syntax. Works across Claude, GPT, Gemini, and smaller autocomplete models.

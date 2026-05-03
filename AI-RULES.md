@@ -23,3 +23,4 @@ Tool-agnostic engineering rules. Pair with a profile (e.g. `AI-RULES.web-develop
 ## Profiles
 Load only when relevant to the work:
 - Web/WordPress: `AI-RULES.web-development.md`
+- Web performance (Core Web Vitals, asset delivery): `AI-RULES.web-performance.md`

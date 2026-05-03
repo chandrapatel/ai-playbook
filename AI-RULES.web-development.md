@@ -58,23 +58,6 @@ WordPress profile for plugins, themes, and Gutenberg work. Pair with `AI-RULES.m
 - Avoid shorthand with side effects: `background-color` not `background`, `margin-inline` not `margin`.
 - No `@import` in CSS — it serializes network requests.
 
-## Markup
-- Classes for CSS hooks. IDs reserved for JavaScript targets, prefixed `js-`.
-- Place skip links as the first element inside `<body>`.
-- Use JSON-LD (`<script type="application/ld+json">`) for structured data.
-- Meaningful inline SVGs need `role="img"`, a unique ID, and `<title>` (plus `<desc>` for complex graphics). Run all SVGs through SVGO.
-- Never autoplay audio. If unavoidable, provide independent pause and volume controls.
-- Set `aria-hidden="true"` from JavaScript, not from static HTML — content shouldn't disappear if scripts fail.
-
-## Page and asset performance
-- Always set `width` and `height` on `<img>` and `<iframe>` to prevent CLS.
-- Inline critical CSS in the head. Load the rest async via `rel="preload"` + `onload="this.rel='stylesheet'"`.
-- LCP image: `fetchpriority="high"`, `loading="eager"`, `decoding="async"`. Lazy-load below-fold images and iframes (`loading="lazy"`).
-- Animate `transform` and `opacity`, never `width`/`height`/`margin`/`padding`.
-- Defer non-critical scripts via the `script_loader_tag` filter.
-- Fonts: max 2 web fonts (prefer variable fonts), `font-display: swap`, subset with `unicode-range`.
-- Use the Facade pattern for heavy embeds (YouTube, maps): render a lightweight preview, swap to the real asset on interaction.
-
 ## Formatting
 - Blank line after a function's opening brace.
 - In docblocks, separate `@param` and `@return` groups with a blank line.
@@ -83,6 +66,9 @@ WordPress profile for plugins, themes, and Gutenberg work. Pair with `AI-RULES.m
 
 ## Testing
 Manual QA across wp-admin, editor, and front-end is the baseline. Automated tests encouraged for high-risk or reusable logic, not required for every plugin/theme.
+
+## Related profiles
+- `AI-RULES.web-performance.md` — Core Web Vitals, asset delivery, caching headers. Load when performance work is in scope.
 
 ## References
 Full 10up guides and WordPress docs live in `AI-REFERENCES.web-development.md`. Load on demand only.
