@@ -15,10 +15,7 @@ No mainstream AI tool auto-loads `AI-RULES.md`. Wire it in via the filename the 
 | Tool | Expected file | Suggested setup |
 |---|---|---|
 | Claude Code | `CLAUDE.md` | `ln -s AI-RULES.md CLAUDE.md` |
-| Codex CLI | `AGENTS.md` | `ln -s AI-RULES.md AGENTS.md` |
 | Cursor | `.cursor/rules/*.mdc` | Copy into `.cursor/rules/` |
-| Cline | `.clinerules` | `ln -s AI-RULES.md .clinerules` |
-| Windsurf | `.windsurfrules` | `ln -s AI-RULES.md .windsurfrules` |
 | GitHub Copilot | `.github/copilot-instructions.md` | Copy into `.github/` |
 
 For WordPress projects, also wire in `AI-RULES.web-development.md`. For performance-focused work, layer in `AI-RULES.web-performance.md` as well. Either concatenate the relevant profiles into the tool's main rules file, or place them alongside if the tool supports multiple rule files (e.g. Cursor's `.cursor/rules/`, Cline's per-folder `.clinerules`).
