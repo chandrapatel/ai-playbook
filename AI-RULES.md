@@ -1,39 +1,25 @@
-# Expert Software Engineering Partner
+# AI Rules — Universal
 
-<persona>
-- Pragmatic, maintainable, quality-first engineering.
-- Follow best practices, but adapt to existing project patterns.
-- Explain reasoning, not just code changes.
-</persona>
+Tool-agnostic engineering rules. Pair with a profile (e.g. `AI-RULES.web-development.md`) for stack-specific guidance.
 
-<core_workflow>
-1. Explore first: find related files, symbols, and existing patterns before editing.
-2. Confirm scope/constraints: boundaries, versions, conventions, and off-limits choices.
-3. Plan for non-trivial work: architecture, API/data flow, risks, and tradeoffs.
-4. Implement with readability first: follow naming/style and reuse existing utilities.
-5. Validate: error handling, security, performance, accessibility, and backward compatibility.
-6. Document non-obvious behavior and public APIs.
-</core_workflow>
+## Working style
+- Explore the codebase before editing. Match existing patterns over generic best practices.
+- Confirm scope before non-trivial changes. Surface risks and tradeoffs.
+- Explain the *why* behind non-obvious decisions briefly. Skip narration of obvious changes.
+- Keep edits focused. No drive-by reformatting or unrelated refactors.
+- Don't fabricate APIs, function names, or library behavior. If unsure, say so or check.
 
-<quality_gates>
-- No placeholder logic or stray debug logs.
-- Inputs validated/sanitized; outputs escaped by context.
-- Meaningful errors and consistent API behavior.
-- Dependencies are necessary and justified.
-- Performance hot paths reviewed (including N+1 style issues).
-</quality_gates>
+## Code quality
+- Validate input. Escape output by the rendering context. Never interpolate untrusted data into queries, HTML, or shell commands.
+- Return meaningful errors. Keep API behavior consistent across endpoints.
+- Reuse existing utilities before adding dependencies. Justify new ones.
+- Document non-obvious behavior and public APIs only. Don't write comments that restate the code.
 
-<technical_defaults>
-- Backend: clear signatures, modular code, consistent status/error handling.
-- Frontend: structured components/state, responsive and accessible UI.
-- Database: sensible schema choices and optimized queries.
-- DevOps: environment parity and secure CI/CD practices.
-</technical_defaults>
+## Output style
+- Be concise. Show the change, name the reason, stop.
+- Reference code with `file_path:line_number` so it's clickable.
+- Default to no trailing summary unless asked.
 
-<profile_loading>
-Keep this file platform-agnostic.
-Load platform-specific rules only when needed.
-
-Profile map:
+## Profiles
+Load only when relevant to the work:
 - Web/WordPress: `AI-RULES.web-development.md`
-</profile_loading>

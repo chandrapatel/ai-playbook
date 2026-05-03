@@ -1,67 +1,43 @@
-# Web Development Platform Profile
+# AI Rules — Web Development (WordPress)
 
-<scope>
-Use with `AI-RULES.md` for WordPress projects (plugins, themes, block editor).
-</scope>
+WordPress profile for plugins, themes, and Gutenberg work. Pair with `AI-RULES.md`.
 
-<platform_profile>
-## Stack
-- WordPress CMS, PHP, JavaScript, React, HTML, CSS.
-- Project types: plugins, themes, and Gutenberg/block-editor work.
+## Stack constraints
+- PHP 8.2+ minimum. Don't use syntax or APIs unsupported on 8.2.
+- Prefer WordPress wrappers over raw PHP: `wp_json_encode()` over `json_encode()`, `wp_remote_*` over `curl`, etc.
+- Use functional React components and hooks for block editor code.
 
-## Standards
-- Follow WordPress-first architecture (hooks, filters, templates, block metadata, enqueueing).
-- Minimum supported PHP version: **8.2+**.
-- Prefer WordPress wrappers/helpers over raw PHP equivalents when available (example: `wp_json_encode()` over `json_encode()`).
+## Security (non-negotiable)
+- Sanitize every input with the context-appropriate `sanitize_*` function.
+- Escape every output at the point of render with the context-appropriate `esc_*` function.
+- Use `$wpdb->prepare()` for all SQL with dynamic values. Never interpolate.
+- Require `current_user_can()` capability checks and `wp_verify_nonce()` on admin, REST, and AJAX actions.
+- Client-side validation is UX only. Server-side validation is mandatory.
 
-## Security and Data Handling
-- Sanitize all input and escape all output contextually.
-- Use capability checks and nonces for admin, REST, and AJAX actions.
-- Use prepared SQL; never interpolate dynamic query values directly.
+## Architecture
+- Work through WordPress conventions: hooks, filters, templates, block metadata, proper enqueueing.
+- Separate block editor logic from front-end render concerns.
+- Cache expensive queries. Watch for N+1 patterns in loops.
 
-## Frontend and Blocks
-- Use functional React components and hooks.
-- Keep block editor logic and front-end rendering concerns separated.
-- Treat server-side authorization/validation as mandatory even with client-side checks.
-- Keep CSS modular, semantic, responsive, and accessible.
+## Formatting
+- Blank line after a function's opening brace.
+- In docblocks, separate `@param` and `@return` groups with a blank line.
+- Inline comments only for non-obvious or critical logic.
+- Defer to project lint/format tooling as final authority when present.
 
-## Build and Workflow
-- Node/npm + 10up Toolkit for build/lint/format; Composer for PHP dependencies.
-- Prefer toolkit defaults; customize webpack/postcss only when required.
-- Classify work early (plugin, theme, shared block/editor) and reuse existing project patterns.
-- Validate manually across wp-admin/editor and front-end before considering changes complete.
+## Build and tooling
+- 10up Toolkit for JS/CSS build, lint, and format. Composer for PHP dependencies.
+- Use toolkit defaults. Customize webpack/postcss only when required.
 
-## Formatting and Documentation Preferences
-- Add a blank line after the function opening brace.
-- In function docblocks, add a blank line between `@param` and `@return` groups.
-- Add inline comments only for critical or non-obvious logic.
-- Mirror local file formatting first; keep edits focused and avoid unrelated reformatting.
-- Use lint/format tooling as final authority when available.
+### Common commands
+- `npm run build` / `npm run start`
+- `npm run lint-js` / `npm run lint-style`
+- `npm run format-js`
+- `composer install`
 
-## Testing Policy
-- Manual QA is acceptable and expected.
-- Automated tests are encouraged for high-risk or reusable logic, but not mandatory for every plugin/theme.
+## Testing
+- Manual QA across wp-admin, block editor, and front-end is expected before declaring work done.
+- Automated tests encouraged for high-risk or reusable logic. Not required for every plugin/theme.
 
-## Common Commands
-- npm run build
-- npm run start
-- npm run lint-js
-- npm run lint-style
-- npm run format-js
-- composer install
-
-## Performance and Delivery
-- Optimize and cache expensive WordPress queries.
-- Keep bundles lean and split assets by editor/admin/front-end context.
-</platform_profile>
-
-<references>
-Use team/public guidance as source-of-truth when available:
-- WordPress and PHP: https://10up.github.io/Engineering-Best-Practices/php/
-- CSS: https://10up.github.io/Engineering-Best-Practices/css/
-- JavaScript: https://10up.github.io/Engineering-Best-Practices/javascript/
-- Performance: https://10up.github.io/Engineering-Best-Practices/performance/
-- HTML Markup: https://10up.github.io/Engineering-Best-Practices/markup/
-- 10up Toolkit README: https://raw.githubusercontent.com/10up/10up-toolkit/refs/heads/develop/packages/toolkit/README.md
-- WordPress Developer Documentation: https://developer.wordpress.org/
-</references>
+## References
+External documentation links live in `AI-REFERENCES.web-development.md`. Load on demand only.
